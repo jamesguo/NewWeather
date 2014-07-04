@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.DrawerLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <FrameLayout
+            android:id="@+id/content_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <FrameLayout
+                android:id="@+id/list_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        <View
+                android:id="@+id/touch_interceptor_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        <LinearLayout
+                android:id="@+id/details_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#333"
+                android:orientation="vertical">
+            <include
+                    layout="@layout/weather_item_detail_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    ></include>
+        </LinearLayout>
+        <com.alexvasilkov.foldablelayout.UnfoldableView
+                android:id="@+id/unfoldable_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </FrameLayout>
+    <RelativeLayout
+            android:id="@+id/drawerLayout"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:paddingTop="?android:attr/actionBarSize"
+            android:background="#ffdddddd"
+            android:clickable="true"
+            android:layout_gravity="start">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_itemHeight"
+                android:drawablePadding="@dimen/default_padding"
+                android:drawableLeft="@android:drawable/ic_menu_manage"
+                android:textColor="@color/text_blue"
+                android:layout_margin="@dimen/default_margin"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/default_text_size"
+                android:text="Setting">
+
+        </TextView>
+    </RelativeLayout>
+</android.support.v4.widget.DrawerLayout>
