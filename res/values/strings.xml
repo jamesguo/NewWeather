@@ -3,7 +3,23 @@
     <string name="app_name">Weather</string>
     <string name="year">Year</string>
     <string name="location">Location</string>
+    <string name="search">Search</string>
     <string name="search_hint">Input City Name</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+    <string name="drawer_collect">Collect</string>
+    <string name="drawer_draft">Draft</string>
+    <string name="drawer_explore">Explore</string>
+    <string name="drawer_follow">Follow</string>
+    <string name="drawer_home">Home</string>
+    <string name="drawer_search">Search</string>
+    <string name="drawer_setting">Setting</string>
+    <string name="drawer_vote">Vote</string>
+    <string name="drawer_about">About</string>
+    <string name="drawer_feedback">Feedback</string>
+    <string name="share_to">Share to ...</string>
+    <string name="send_feedback">Send feedback email</string>
+    <string name="no_app_to_share">No app installed to share data of type %s!</string>
+    <string name="no_share_type">No share type specified!</string>
+    <string name="error_occurred">Sorry, an error occurred.</string>
 </resources>

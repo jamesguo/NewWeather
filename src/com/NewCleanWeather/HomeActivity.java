@@ -4,54 +4,45 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.*;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.SearchView;
-import com.NewCleanWeather.fragment.FadingActionBarHelper;
-import com.NewCleanWeather.fragment.FocusCityWeatherListFragment;
-import com.NewCleanWeather.widget.SlidingUpPanelLayout;
-import com.alexvasilkov.foldablelayout.UnfoldableView;
+import com.NewCleanWeather.fragment.SettingFragment;
+import com.NewCleanWeather.fragment.WeatherListFragment;
+import com.NewCleanWeather.manager.FragmentExchangeManager;
 import com.alexvasilkov.foldablelayout.sample.activities.BaseActivity;
 import com.alexvasilkov.foldablelayout.sample.items.Painting;
 import com.alexvasilkov.foldablelayout.sample.items.Views;
-import com.alexvasilkov.foldablelayout.shading.GlanceFoldShading;
+
+import java.util.ArrayList;
 
 /**
  * Created by yrguo on 2014/7/3.
  */
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends BaseActivity implements AdapterView.OnItemClickListener {
     private static final String TAG = "BaseActivity";
+    public static final String Weather_TAG = "weather";
+    public static final String Setting_TAG = "setting";
+    public static final String About_TAG = "about";
     //    private ListView mListView;
-    private View mListTouchInterceptor;
-    private View mDetailsLayout;
-    private UnfoldableView mUnfoldableView;
-    private SlidingUpPanelLayout mLayout;
     private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mDrawerToggle;
-    private FadingActionBarHelper mFadingActionBarHelper;
-    private int currentAlpha;
+    public ActionBarDrawerToggle mDrawerToggle;
+    private ListView drawerList;
+    private DrawerListAdapter drawerListAdapter;
+    private int currrent = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_layout);
-
-        mFadingActionBarHelper = new FadingActionBarHelper(getActionBar(), getResources().getDrawable(R.drawable.actionbar_bg));
-
-//        mListView = Views.find(this, R.id.list_view);
-//        mListView.setAdapter(new PaintingsAdapter(this));
-        mListTouchInterceptor = Views.find(this, R.id.touch_interceptor_view);
-        mListTouchInterceptor.setClickable(false);
-        mDetailsLayout = Views.find(this, R.id.details_layout);
-        mDetailsLayout.setVisibility(View.INVISIBLE);
-        mUnfoldableView = Views.find(this, R.id.unfoldable_view);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
-
+        mDrawerLayout = Views.find(this, R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.drawable.ic_drawer_white, R.string.drawer_open, R.string.drawer_close) {
 
@@ -69,81 +60,25 @@ public class HomeActivity extends BaseActivity {
         };
         // Set the drawer toggle as the DrawerListener
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+//        getActionBar().setBackgroundDrawable(this.getBaseContext().getResources().getDrawable(R.drawable.actionbar_bg));
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
-
-        Bitmap glance = ((BitmapDrawable) getResources().getDrawable(R.drawable.unfold_glance)).getBitmap();
-        mUnfoldableView.setFoldShading(new GlanceFoldShading(this, glance));
-
-        mUnfoldableView.setOnFoldingListener(new UnfoldableView.SimpleFoldingListener() {
-            @Override
-            public void onUnfolding(UnfoldableView unfoldableView) {
-                mListTouchInterceptor.setClickable(true);
-                mDetailsLayout.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onUnfolded(UnfoldableView unfoldableView) {
-                getWindow().invalidatePanelMenu(Window.FEATURE_OPTIONS_PANEL);
-                mListTouchInterceptor.setClickable(false);
-                mDrawerToggle.setDrawerIndicatorEnabled(false);
-            }
-
-            @Override
-            public void onFoldProgress(UnfoldableView unfoldableView, float progress) {
-//                if(currentAlpha!=255){
-//                    getFadingActionBarHelper().setActionBarAlpha((int)((255-currentAlpha)*progress));
-//                }
-            }
-
-            @Override
-            public void onFoldingBack(UnfoldableView unfoldableView) {
-                mListTouchInterceptor.setClickable(true);
-            }
-
-            @Override
-            public void onFoldedBack(UnfoldableView unfoldableView) {
-                mListTouchInterceptor.setClickable(false);
-                mDetailsLayout.setVisibility(View.INVISIBLE);
-                getWindow().invalidatePanelMenu(Window.FEATURE_OPTIONS_PANEL);
-                mDrawerToggle.setDrawerIndicatorEnabled(true);
-            }
-        });
-
-
-        mLayout.setPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
-            @Override
-            public void onPanelSlide(View panel, float slideOffset) {
-//                Log.i(TAG, "onPanelSlide, offset " + slideOffset);
-//                setActionBarTranslation(mLayout.getCurrentParalaxOffset());
-            }
-
-            @Override
-            public void onPanelExpanded(View panel) {
-//                Log.i(TAG, "onPanelExpanded");
-
-            }
-
-            @Override
-            public void onPanelCollapsed(View panel) {
-//                Log.i(TAG, "onPanelCollapsed");
-
-            }
-
-            @Override
-            public void onPanelAnchored(View panel) {
-                Log.i(TAG, "onPanelAnchored");
-            }
-
-            @Override
-            public void onPanelHidden(View panel) {
-                Log.i(TAG, "onPanelHidden");
-            }
-        });
-
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction().add(R.id.list_container, new FocusCityWeatherListFragment()).commit();
-        }
+        drawerList = Views.find(this, R.id.drawer_left_list);
+        drawerListAdapter = new DrawerListAdapter(getBaseContext());
+        drawerList.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+        ArrayList<DrawerListAdapter.DreawerItem> dreawerItems = new ArrayList<DrawerListAdapter.DreawerItem>();
+        dreawerItems.add(new DrawerListAdapter.DreawerItem(0, R.drawable.ic_drawer_home, getResources().getString(R.string.drawer_home)));
+        dreawerItems.add(new DrawerListAdapter.DreawerItem(1, R.drawable.ic_drawer_setting, getResources().getString(R.string.drawer_setting)));
+        dreawerItems.add(new DrawerListAdapter.DreawerItem(2, R.drawable.ic_drawer_about, getResources().getString(R.string.drawer_about)));
+        dreawerItems.add(new DrawerListAdapter.DreawerItem(3, R.drawable.ic_drawer_feedback, getResources().getString(R.string.drawer_feedback)));
+        dreawerItems.add(new DrawerListAdapter.DreawerItem(4, R.drawable.ic_drawer_vote, getResources().getString(R.string.drawer_vote)));
+        drawerListAdapter.dreawerItems.clear();
+        drawerListAdapter.dreawerItems.addAll(dreawerItems);
+        drawerListAdapter.notifyDataSetChanged();
+        drawerList.setAdapter(drawerListAdapter);
+        drawerList.setOnItemClickListener(this);
+        drawerList.setItemChecked(0, true);
+        onItemClick(drawerList, null, 0, drawerListAdapter.getItemId(0));
     }
 
     @Override
@@ -151,16 +86,13 @@ public class HomeActivity extends BaseActivity {
         if (mDrawerToggle.isDrawerIndicatorEnabled()) {
             return;
         }
-        if (mLayout != null && (mLayout.isPanelExpanded() || mLayout.isPanelDragging())) {
-            mLayout.setAnchorPoint(1.0f);
-            mLayout.collapsePanel();
-        } else {
-            if (mUnfoldableView != null && (mUnfoldableView.isUnfolded() || mUnfoldableView.isUnfolding())) {
-                mUnfoldableView.foldBack();
-            } else {
-                super.onBackPressed();
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(Weather_TAG);
+        if(fragment!=null&&fragment.isVisible()&&fragment instanceof WeatherListFragment){
+            if(((WeatherListFragment) fragment).onBackPressed()){
+                return;
             }
         }
+        super.onBackPressed();
     }
 
     @Override
@@ -191,48 +123,73 @@ public class HomeActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-//        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-//        menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
-        if (mUnfoldableView.isUnfolded()) {
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.detail_bar, menu);
-        } else {
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.main_bar, menu);
-            SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-            SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
-            searchView.setIconifiedByDefault(true);
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        }
-        return true;
-    }
-
-    public void openDetails(View coverView, Painting painting) {
-//        ImageView image = Views.find(mDetailsLayout, R.id.details_image);
-//        TextView title = Views.find(mDetailsLayout, R.id.details_title);
-//        TextView description = Views.find(mDetailsLayout, R.id.details_text);
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        Fragment fragment = getSupportFragmentManager().findFragmentByTag(Weather_TAG);
+//        if(fragment!=null&&fragment.isVisible()&&fragment instanceof WeatherListFragment){
+//            fragment.onCreateOptionsMenu(menu,getMenuInflater());
+//        }else{
 //
-//        image.setBackground(getResources().getDrawable(painting.getImageId()));
-//        title.setText(painting.getTitle());
-//
-//        description.setText(painting.getTitle());
-        currentAlpha = getFadingActionBarHelper().getActionBarAlpha();
-        if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
-        mUnfoldableView.unfold(coverView, mDetailsLayout);
-    }
-
+//        }
+//        return true;
+//    }
     private void handleIntent(Intent intent) {
         if (intent == null)
             return;
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
+
         }
     }
 
-    public FadingActionBarHelper getFadingActionBarHelper() {
-        return mFadingActionBarHelper;
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Object localObject = parent.getAdapter().getItem(position);
+        if ((localObject instanceof DrawerListAdapter.DreawerItem)) {
+            switch ((int) (((DrawerListAdapter.DreawerItem) localObject).index)) {
+                case 0:
+                    if (currrent != (int) (((DrawerListAdapter.DreawerItem) localObject).index)) {
+                        FragmentExchangeManager.exchangeFragment(getSupportFragmentManager(), R.id.content_frame, Weather_TAG, WeatherListFragment.class, null);
+                        getActionBar().setTitle(((DrawerListAdapter.DreawerItem) localObject).text);
+                    }
+                    break;
+                case 1:
+                    if (currrent != (int) (((DrawerListAdapter.DreawerItem) localObject).index)) {
+                        FragmentExchangeManager.exchangeFragment(getSupportFragmentManager(), R.id.content_frame, Setting_TAG, SettingFragment.class, null);
+                        getActionBar().setTitle(((DrawerListAdapter.DreawerItem) localObject).text);
+                    }
+                    break;
+                case 2:
+                    drawerList.setItemChecked(currrent, true);
+                    break;
+                case 3:
+                    Intent email = new Intent(android.content.Intent.ACTION_SEND);
+                    email.setType("text/plain");
+                    String[] emailReciver = new String[]{"james.guo89@gmail.com"};
+                    String emailSubject = getResources().getString(R.string.drawer_feedback);
+//设置邮件默认地址
+                    email.putExtra(android.content.Intent.EXTRA_EMAIL, emailReciver);
+//设置邮件默认标题
+                    email.putExtra(android.content.Intent.EXTRA_SUBJECT, emailSubject);
+//设置要默认发送的内容
+                    email.putExtra(android.content.Intent.EXTRA_TEXT, "");
+//调用系统的邮件系统
+                    startActivity(Intent.createChooser(email, getResources().getString(R.string.send_feedback)));
+                    drawerList.setItemChecked(currrent, true);
+                    break;
+                case 4:
+                    //评分
+                    Uri uri = Uri.parse("market://details?id=" + getPackageName());
+                    Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    drawerList.setItemChecked(currrent, true);
+                    break;
+                default:
+                    break;
+            }
+            mDrawerLayout.closeDrawers();
+            currrent = drawerList.getCheckedItemPosition();
+        }
     }
-
 }

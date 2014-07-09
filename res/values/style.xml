@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="DrawerText" parent="android:TextAppearance.Holo">
-        <item name="android:fontFamily" tools:ignore="NewApi">sans-serif-light</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:layout_margin">@dimen/default_margin</item>
-    </style>
-</resources>

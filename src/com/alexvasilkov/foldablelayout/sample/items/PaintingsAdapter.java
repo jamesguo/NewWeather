@@ -14,7 +14,7 @@ import com.alexvasilkov.foldablelayout.sample.activities.UnfoldableDetailsActivi
 import java.util.Arrays;
 
 public class PaintingsAdapter extends ItemsAdapter<Painting> implements View.OnClickListener {
-
+    public UnfoldInterface unfoldInterface;
     public PaintingsAdapter(Context context) {
         super(context);
         setItemsList(Arrays.asList(Painting.getAllPaintings(context.getResources())));
@@ -43,15 +43,13 @@ public class PaintingsAdapter extends ItemsAdapter<Painting> implements View.OnC
 
     @Override
     public void onClick(View view) {
-        if (view.getContext() instanceof UnfoldableDetailsActivity) {
-            UnfoldableDetailsActivity activity = (UnfoldableDetailsActivity) view.getContext();
-            activity.openDetails(view, (Painting) view.getTag());
-        }else if (view.getContext() instanceof SplashActivity) {
-            SplashActivity activity = (SplashActivity) view.getContext();
-            activity.openDetails(view, (Painting) view.getTag());
-        }else if (view.getContext() instanceof HomeActivity) {
-            HomeActivity activity = (HomeActivity) view.getContext();
-            activity.openDetails(view, (Painting) view.getTag());
+        if(unfoldInterface!=null){
+            unfoldInterface.openDetails(view, (Painting) view.getTag());
+        }else{
+            if (view.getContext() instanceof UnfoldInterface) {
+                UnfoldInterface activity = (UnfoldInterface) view.getContext();
+                activity.openDetails(view, (Painting) view.getTag());
+            }
         }
     }
 
@@ -60,4 +58,7 @@ public class PaintingsAdapter extends ItemsAdapter<Painting> implements View.OnC
         TextView title;
     }
 
+    public interface UnfoldInterface {
+        public void openDetails(View view, Painting painting);
+    }
 }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:actionBarStyle">@style/Weather.Widget.ActionBar</item>
+        <item name="android:actionBarWidgetTheme">@style/Weather.ActionBarWidgetTheme</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:actionMenuTextColor">@color/ab_text_color</item>
+        <item name="android:homeAsUpIndicator">@drawable/ab_home_as_up_indicator</item>
+    </style>
+    <style name="Weather.Widget.ActionBar" parent="android:Widget.ActionBar">
+        <item name="android:background">@color/ab_background</item>
+        <item name="android:titleTextStyle">@style/Weather.TextAppearance.ActionBar.Title</item>
+        <item name="android:title">@string/drawer_home</item>
+        <item name="android:icon">@drawable/topbar_icon</item>
+        <item name="android:backgroundStacked">@color/ab_tab_indicator_normal</item>
+    </style>
+    <style name="Weather.ActionBarWidgetTheme" parent="@android:style/Theme.Holo">
+        <item name="android:textColorHint">@color/ab_text_color_hint</item>
+        <item name="android:textColor">@color/ab_text_color</item>
+        <item name="android:editTextBackground">@drawable/ab_search_textfield_normal</item>
+    </style>
+
+    <style name="DrawerText" parent="android:TextAppearance.Holo">
+        <item name="android:fontFamily" tools:ignore="NewApi">sans-serif-light</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">@dimen/default_margin</item>
+    </style>
+    <style name="Weather.TextAppearance" parent="android:TextAppearance" />
+    <style name="Weather.TextAppearance.ActionBar.SubTitle" parent="@style/Weather.TextAppearance">
+        <item name="android:textSize">@dimen/action_bar_sub_title_text_size</item>
+        <item name="android:textColor">@color/ab_text_color</item>
+    </style>
+    <style name="Weather.TextAppearance.ActionBar.Title" parent="@style/Weather.TextAppearance">
+        <item name="android:textSize">@dimen/action_bar_title_text_size</item>
+        <item name="android:textColor">@color/ab_text_color</item>
+    </style>
+    <style name="Weather.TextAppearance.Title.Main" parent="Weather.TextAppearance">
+        <item name="android:textColor">@color/selectable_text_color_black</item>
+    </style>
+    <style name="Weather.TextAppearance.Title.Main.Large" parent="@style/Weather.TextAppearance.Title.Main">
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+    <style name="Weather.TextAppearance.White" parent="android:TextAppearance">
+        <item name="android:textColor">@color/text_color_white</item>
+    </style>
+    <style name="Weather.TextAppearance.White.Large" parent="@style/Weather.TextAppearance.White">
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+    <style name="Weather.TextAppearance.White.Small" parent="@style/Weather.TextAppearance.White">
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+</resources>

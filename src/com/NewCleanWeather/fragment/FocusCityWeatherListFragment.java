@@ -10,7 +10,6 @@ import android.view.ViewGroup;
  * Created by yrguo on 2014/7/4.
  */
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.Gravity;
@@ -22,7 +21,6 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
-import com.NewCleanWeather.HomeActivity;
 import com.NewCleanWeather.R;
 import com.alexvasilkov.foldablelayout.sample.items.PaintingsAdapter;
 
@@ -39,6 +37,7 @@ public class FocusCityWeatherListFragment extends HeaderFragment {
 
     private AsyncLoadSomething mAsyncLoadSomething;
     private FrameLayout mContentOverlay;
+    public PaintingsAdapter paintingsAdapter;
 
     @Override
     public void onAttach(Activity activity) {
@@ -98,10 +97,11 @@ public class FocusCityWeatherListFragment extends HeaderFragment {
         if (mListView == null) return;
 
         mListView.setVisibility(View.VISIBLE);
-        setListViewAdapter(mListView, new PaintingsAdapter(getActivity()));
-//        setListViewAdapter(mListView, new ArrayAdapter<String>(
-//                getActivity(), android.R.layout.simple_list_item_1,
-//                mListViewTitles));
+        paintingsAdapter = new PaintingsAdapter(getActivity());
+        if(getTargetFragment()!=null&&getTargetFragment() instanceof PaintingsAdapter.UnfoldInterface){
+            paintingsAdapter.unfoldInterface = (PaintingsAdapter.UnfoldInterface)getTargetFragment();
+        }
+        setListViewAdapter(mListView, paintingsAdapter);
     }
 
     private void cancelAsyncTask(AsyncTask task) {
