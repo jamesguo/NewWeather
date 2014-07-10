@@ -22,4 +22,46 @@
     <string name="no_app_to_share">No app installed to share data of type %s!</string>
     <string name="no_share_type">No share type specified!</string>
     <string name="error_occurred">Sorry, an error occurred.</string>
+    <string name="unit">Units</string>
+    <string name="temp_unit">Temp Units</string>
+    <string name="set_temp_unit">Set temp units</string>
+    <string-array name="temp_list_preference">
+        <item>°C</item>
+        <item>°F</item>
+    </string-array>
+    <integer-array name="temp_value_list_preference">
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+    <string name="normal_set">Normal</string>
+    <string name="update_interval">Update interval</string>
+    <string name="update_interval_info">Select the update interval</string>
+    <string name="set_update_interval">Set update interval</string>
+    <string-array name="entries_list_preference">
+        <item>5  minutes</item>
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1  hours</item>
+        <item>2  hours</item>
+        <item>4  hours</item>
+    </string-array>
+    <integer-array name="entry_values_list_preference">
+        <item>5</item>
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+        <item>240</item>
+    </integer-array>
+    <string name="play_toast">Fuck GWF!!!</string>
+    <string name="owner_name">James Guo</string>
+    <string name="develop_and_design">Dev&#38;Des</string>
+    <string name="contact_email">James.guo89@gmail.com</string>
+    <string name="send_contact_email">mailto:James.guo89@gmail.com</string>
+    <string name="google_plus_url">https://plus.google.com/u/0/113595402959916974871/posts</string>
+    <string name="Contact">Contact me</string>
+    <string name="version">Version</string>
+    <string name="changeLog">ChangeLog</string>
+    <string name="title_changelog">Change log</string>
+    <string name="changelog_close">Close</string>
 </resources>

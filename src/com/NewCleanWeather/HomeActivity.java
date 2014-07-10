@@ -1,5 +1,6 @@
 package com.NewCleanWeather;
 
+import android.app.Fragment;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -7,13 +8,13 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.view.*;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import com.NewCleanWeather.fragment.AboutFragment;
 import com.NewCleanWeather.fragment.SettingFragment;
 import com.NewCleanWeather.fragment.WeatherListFragment;
 import com.NewCleanWeather.manager.FragmentExchangeManager;
@@ -86,7 +87,7 @@ public class HomeActivity extends BaseActivity implements AdapterView.OnItemClic
         if (mDrawerToggle.isDrawerIndicatorEnabled()) {
             return;
         }
-        Fragment fragment = getSupportFragmentManager().findFragmentByTag(Weather_TAG);
+        Fragment fragment = getFragmentManager().findFragmentByTag(Weather_TAG);
         if(fragment!=null&&fragment.isVisible()&&fragment instanceof WeatherListFragment){
             if(((WeatherListFragment) fragment).onBackPressed()){
                 return;
@@ -149,32 +150,43 @@ public class HomeActivity extends BaseActivity implements AdapterView.OnItemClic
             switch ((int) (((DrawerListAdapter.DreawerItem) localObject).index)) {
                 case 0:
                     if (currrent != (int) (((DrawerListAdapter.DreawerItem) localObject).index)) {
-                        FragmentExchangeManager.exchangeFragment(getSupportFragmentManager(), R.id.content_frame, Weather_TAG, WeatherListFragment.class, null);
+                        FragmentExchangeManager.exchangeFragment(getFragmentManager(), R.id.content_frame, Weather_TAG, WeatherListFragment.class, null);
                         getActionBar().setTitle(((DrawerListAdapter.DreawerItem) localObject).text);
                     }
                     break;
                 case 1:
                     if (currrent != (int) (((DrawerListAdapter.DreawerItem) localObject).index)) {
-                        FragmentExchangeManager.exchangeFragment(getSupportFragmentManager(), R.id.content_frame, Setting_TAG, SettingFragment.class, null);
+                        FragmentExchangeManager.exchangeFragment(getFragmentManager(), R.id.content_frame, Setting_TAG, SettingFragment.class, null);
                         getActionBar().setTitle(((DrawerListAdapter.DreawerItem) localObject).text);
                     }
                     break;
                 case 2:
-                    drawerList.setItemChecked(currrent, true);
+                    if (currrent != (int) (((DrawerListAdapter.DreawerItem) localObject).index)) {
+                        FragmentExchangeManager.exchangeFragment(getFragmentManager(), R.id.content_frame, About_TAG, AboutFragment.class, null);
+                        getActionBar().setTitle(((DrawerListAdapter.DreawerItem) localObject).text);
+                    }
                     break;
                 case 3:
-                    Intent email = new Intent(android.content.Intent.ACTION_SEND);
-                    email.setType("text/plain");
-                    String[] emailReciver = new String[]{"james.guo89@gmail.com"};
-                    String emailSubject = getResources().getString(R.string.drawer_feedback);
-//设置邮件默认地址
-                    email.putExtra(android.content.Intent.EXTRA_EMAIL, emailReciver);
-//设置邮件默认标题
-                    email.putExtra(android.content.Intent.EXTRA_SUBJECT, emailSubject);
-//设置要默认发送的内容
-                    email.putExtra(android.content.Intent.EXTRA_TEXT, "");
-//调用系统的邮件系统
-                    startActivity(Intent.createChooser(email, getResources().getString(R.string.send_feedback)));
+//                    Intent play = new Intent(Intent.ACTION_MAIN);
+//                    play.setClassName("android","com.android.internal.app.PlatLogoActivity");
+//                    startActivity(play);
+                    Intent data=new Intent(Intent.ACTION_SENDTO);
+                    data.setData(Uri.parse("mailto:james.guo89@gmail.com"));
+                    data.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.drawer_feedback));
+                    data.putExtra(Intent.EXTRA_TEXT, "");
+                    startActivity(data);
+//                    Intent email = new Intent(android.content.Intent.ACTION_SEND);
+//                    email.setType("text/plain");
+//                    String[] emailReciver = new String[]{"james.guo89@gmail.com"};
+//                    String emailSubject = getResources().getString(R.string.drawer_feedback);
+////设置邮件默认地址
+//                    email.putExtra(android.content.Intent.EXTRA_EMAIL, emailReciver);
+////设置邮件默认标题
+//                    email.putExtra(android.content.Intent.EXTRA_SUBJECT, emailSubject);
+////设置要默认发送的内容
+//                    email.putExtra(android.content.Intent.EXTRA_TEXT, "");
+////调用系统的邮件系统
+//                    startActivity(Intent.createChooser(email, getResources().getString(R.string.send_feedback)));
                     drawerList.setItemChecked(currrent, true);
                     break;
                 case 4:

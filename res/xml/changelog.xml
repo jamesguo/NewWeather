@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<changelog>
+    <release version="1.0" versioncode="1" summary="Example summary" date="07/25/2014">
+        <change>Create App</change>
+    </release>
+</changelog>

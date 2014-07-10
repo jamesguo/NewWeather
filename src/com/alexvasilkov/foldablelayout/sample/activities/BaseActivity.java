@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
 import android.view.Window;
 
-public class BaseActivity extends FragmentActivity {
+public class BaseActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

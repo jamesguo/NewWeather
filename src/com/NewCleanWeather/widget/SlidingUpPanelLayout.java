@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import com.NewCleanWeather.R;
+import com.NewCleanWeather.util.SystemUtil;
 import com.nineoldandroids.view.animation.AnimatorProxy;
 
 
@@ -621,7 +622,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
             }
 
             if (child == mSlideableView) {
-                mSlideRange = height - mPanelHeight-getActionBarHeight();
+                mSlideRange = height - mPanelHeight- SystemUtil.getActionBarHeight();
             }
 
             int childWidthSpec;
@@ -986,14 +987,6 @@ public class SlidingUpPanelLayout extends ViewGroup {
         return result;
     }
 
-    private int getActionBarHeight(){
-        int actionBarHeight = 0;
-        TypedValue tv = new TypedValue();
-        if (getContext().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data,getContext().getResources().getDisplayMetrics());
-        }
-        return actionBarHeight;
-    }
     /**
      * Smoothly animate mDraggingPane to the target X position within its range.
      *
