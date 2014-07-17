@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import com.NewCleanWeather.R;
+import com.NewCleanWeather.util.DeviceInfoUtil;
 import com.NewCleanWeather.util.SystemUtil;
 import com.nineoldandroids.view.animation.AnimatorProxy;
 
@@ -622,7 +623,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
             }
 
             if (child == mSlideableView) {
-                mSlideRange = height - mPanelHeight- SystemUtil.getActionBarHeight();
+                mSlideRange = height - mPanelHeight- DeviceInfoUtil.getActionBarHeight();
             }
 
             int childWidthSpec;

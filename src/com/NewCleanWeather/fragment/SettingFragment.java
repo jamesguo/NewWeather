@@ -11,6 +11,7 @@ import android.view.*;
 import android.preference.PreferenceFragment;
 import com.NewCleanWeather.R;
 import com.NewCleanWeather.WeatherApplication;
+import com.NewCleanWeather.util.DeviceInfoUtil;
 import com.NewCleanWeather.util.SystemUtil;
 
 /**
@@ -46,7 +47,7 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
     public void onViewCreated(View view, Bundle savedInstanceState) {
         ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams)view.getLayoutParams();
         if(layoutParams!=null){
-            layoutParams.setMargins(0, SystemUtil.getActionBarHeight(),0,0);
+            layoutParams.setMargins(0, DeviceInfoUtil.getActionBarHeight(),0,0);
             view.setLayoutParams(layoutParams);
         }
         super.onViewCreated(view, savedInstanceState);

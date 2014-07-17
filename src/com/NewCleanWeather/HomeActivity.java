@@ -18,6 +18,8 @@ import com.NewCleanWeather.fragment.AboutFragment;
 import com.NewCleanWeather.fragment.SettingFragment;
 import com.NewCleanWeather.fragment.WeatherListFragment;
 import com.NewCleanWeather.manager.FragmentExchangeManager;
+import com.NewCleanWeather.widget.shimmer.Shimmer;
+import com.NewCleanWeather.widget.shimmer.ShimmerTextView;
 import com.alexvasilkov.foldablelayout.sample.activities.BaseActivity;
 import com.alexvasilkov.foldablelayout.sample.items.Painting;
 import com.alexvasilkov.foldablelayout.sample.items.Views;
@@ -38,7 +40,8 @@ public class HomeActivity extends BaseActivity implements AdapterView.OnItemClic
     private ListView drawerList;
     private DrawerListAdapter drawerListAdapter;
     private int currrent = -1;
-
+    private ShimmerTextView mShimmerTextView;
+    private Shimmer mShimmer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,12 +53,17 @@ public class HomeActivity extends BaseActivity implements AdapterView.OnItemClic
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
+                if (mShimmer != null && mShimmer.isAnimating()) {
+                    mShimmer.cancel();
+                }
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
             /** Called when a drawer has settled in a completely open state. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
+                mShimmer = new Shimmer();
+                mShimmer.start(mShimmerTextView);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
@@ -64,6 +72,9 @@ public class HomeActivity extends BaseActivity implements AdapterView.OnItemClic
 //        getActionBar().setBackgroundDrawable(this.getBaseContext().getResources().getDrawable(R.drawable.actionbar_bg));
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
+
+        mShimmer = new Shimmer();
+        mShimmerTextView = Views.find(this,R.id.shimmer_tv);
         drawerList = Views.find(this, R.id.drawer_left_list);
         drawerListAdapter = new DrawerListAdapter(getBaseContext());
         drawerList.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);

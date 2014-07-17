@@ -50,8 +50,43 @@
     <style name="Weather.TextAppearance.White.Large" parent="@style/Weather.TextAppearance.White">
         <item name="android:textSize">@dimen/text_size_large</item>
     </style>
+    <style name="Weather.TextAppearance.White.XLarge" parent="@style/Weather.TextAppearance.White">
+        <item name="android:textSize">@dimen/text_size_xlarge</item>
+    </style>
+    <style name="Weather.TextAppearance.White.XXLarge" parent="@style/Weather.TextAppearance.White">
+        <item name="android:textSize">@dimen/text_size_xxlarge</item>
+    </style>
     <style name="Weather.TextAppearance.White.Small" parent="@style/Weather.TextAppearance.White">
         <item name="android:textSize">@dimen/text_size_small</item>
     </style>
-
+    <style name="Weather.TextAppearance.GRAY" parent="android:TextAppearance">
+        <item name="android:textColor">@color/text_color_gray</item>
+    </style>
+    <style name="Weather.TextAppearance.GRAY.Large" parent="@style/Weather.TextAppearance.GRAY">
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+    <style name="Weather.TextAppearance.GRAY.XLarge" parent="@style/Weather.TextAppearance.GRAY">
+        <item name="android:textSize">@dimen/text_size_xlarge</item>
+    </style>
+    <style name="Weather.TextAppearance.GRAY.XXLarge" parent="@style/Weather.TextAppearance.GRAY">
+        <item name="android:textSize">@dimen/text_size_xxlarge</item>
+    </style>
+    <style name="Weather.TextAppearance.GRAY.Small" parent="@style/Weather.TextAppearance.GRAY">
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+    <style name="Weather.TextAppearance.BLACK" parent="android:TextAppearance">
+        <item name="android:textColor">@color/text_color_black</item>
+    </style>
+    <style name="Weather.TextAppearance.BLACK.Large" parent="@style/Weather.TextAppearance.BLACK">
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+    <style name="Weather.TextAppearance.BLACK.XLarge" parent="@style/Weather.TextAppearance.BLACK">
+        <item name="android:textSize">@dimen/text_size_xlarge</item>
+    </style>
+    <style name="Weather.TextAppearance.BLACK.XXLarge" parent="@style/Weather.TextAppearance.BLACK">
+        <item name="android:textSize">@dimen/text_size_xxlarge</item>
+    </style>
+    <style name="Weather.TextAppearance.BLACK.Small" parent="@style/Weather.TextAppearance.BLACK">
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
 </resources>

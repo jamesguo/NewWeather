@@ -14,11 +14,14 @@ import android.widget.SearchView;
 import com.NewCleanWeather.HomeActivity;
 import com.NewCleanWeather.R;
 import com.NewCleanWeather.manager.FragmentExchangeManager;
+import com.NewCleanWeather.model.WeatherListItemModel;
 import com.NewCleanWeather.widget.SlidingUpPanelLayout;
+import com.NewCleanWeather.widget.WeatherDetailView;
 import com.alexvasilkov.foldablelayout.UnfoldableView;
 import com.alexvasilkov.foldablelayout.sample.items.Painting;
 import com.alexvasilkov.foldablelayout.sample.items.PaintingsAdapter;
 import com.alexvasilkov.foldablelayout.sample.items.Views;
+import com.alexvasilkov.foldablelayout.sample.items.WeatherItemListAdapter;
 import com.alexvasilkov.foldablelayout.shading.GlanceFoldShading;
 
 import java.lang.reflect.Field;
@@ -27,7 +30,7 @@ import java.lang.reflect.Field;
 /**
  * Created by yrguo on 2014/7/7.
  */
-public class WeatherListFragment extends Fragment implements PaintingsAdapter.UnfoldInterface {
+public class WeatherListFragment extends Fragment implements PaintingsAdapter.UnfoldInterface, WeatherItemListAdapter.WeatherItemUnfoldInterface {
     private View mListTouchInterceptor;
     private View mDetailsLayout;
     private UnfoldableView mUnfoldableView;
@@ -179,7 +182,7 @@ public class WeatherListFragment extends Fragment implements PaintingsAdapter.Un
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.share:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
@@ -194,7 +197,6 @@ public class WeatherListFragment extends Fragment implements PaintingsAdapter.Un
     }
 
 
-
     public boolean onBackPressed() {
         if (mLayout != null && (mLayout.isPanelExpanded() || mLayout.isPanelDragging())) {
             mLayout.setAnchorPoint(1.0f);
@@ -207,5 +209,13 @@ public class WeatherListFragment extends Fragment implements PaintingsAdapter.Un
             }
         }
         return false;
+    }
+
+    @Override
+    public void openDetails(View view, WeatherListItemModel weatherListItemModel) {
+        if (getActivity().getActionBar() != null) getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+        WeatherDetailView weatherDetailView = Views.find(mDetailsLayout, R.id.detailView);
+        weatherDetailView.setmWeatherListItemModel(weatherListItemModel);
+        mUnfoldableView.unfold(view, mDetailsLayout);
     }
 }

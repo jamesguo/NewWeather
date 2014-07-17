@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+        >
+    <com.NewCleanWeather.widget.WeatherListItemView
+            android:id="@+id/subInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/weather_list_item"/>
+    <ImageView
+            android:id="@+id/update"
+            android:src="@drawable/ic_play_widgets_refresh"
+            android:layout_marginRight="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_tiny"
+            android:layout_width="@dimen/margin_xxlarge"
+            android:layout_height="@dimen/margin_xxlarge"
+            android:layout_gravity="right|bottom"/>
+</FrameLayout>

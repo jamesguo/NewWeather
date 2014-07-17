@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       >
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+        >
     <FrameLayout
             android:id="@+id/list_container"
             android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:id="@+id/details_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#333"
+            android:background="@color/spb_default_color"
             android:orientation="vertical">
         <include
                 layout="@layout/weather_item_detail_layout"

@@ -15,7 +15,11 @@ import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.webkit.WebView;
+import android.widget.AbsoluteLayout;
+import android.widget.LinearLayout;
 import com.NewCleanWeather.R;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -202,11 +206,14 @@ public class ChangeLogDialog {
         }
 
         //Create web view and load html
+        LinearLayout contentView = new LinearLayout(mContext);
         final WebView webView = new WebView(mContext);
+        webView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         webView.loadDataWithBaseURL(null, htmlChangelog, "text/html", "utf-8", null);
+        contentView.addView(webView);
         final AlertDialog.Builder builder = new AlertDialog.Builder(mContext)
                 .setTitle(title)
-                .setView(webView)
+                .setView(contentView)
                 .setPositiveButton(closeString, new Dialog.OnClickListener() {
                     public void onClick(final DialogInterface dialogInterface, final int i) {
                         dialogInterface.dismiss();
@@ -220,6 +227,9 @@ public class ChangeLogDialog {
                     }
                 });
         AlertDialog dialog = builder.create();
+        WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
+        params.height = webView.getMeasuredHeight() ;
+        dialog.getWindow().setAttributes(params);
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(final DialogInterface dialog) {

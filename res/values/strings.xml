@@ -64,4 +64,27 @@
     <string name="changeLog">ChangeLog</string>
     <string name="title_changelog">Change log</string>
     <string name="changelog_close">Close</string>
+
+    <string name="hello">Blur in RenderScript!</string>
+    <string name="framerate">Elapsed time %1$.1f sec, local frames %2$d, frames %3$d, %4$.1f fps</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string-array name="from_numbers_array">
+        <item>Pick a number</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+    <string name="humidity">Humidity</string>
+    <string name="uv_index">UV Index</string>
+    <string name="wind">Wind</string>
+    <string name="feels_like">Feels Like</string>
+    <string name="visibility">Visibility</string>
 </resources>

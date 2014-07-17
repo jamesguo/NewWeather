@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.NewCleanWeather.R;
 import com.NewCleanWeather.WeatherApplication;
 import com.NewCleanWeather.manager.ChangeLogDialog;
+import com.NewCleanWeather.util.DeviceInfoUtil;
 import com.NewCleanWeather.util.SystemUtil;
 
 /**
@@ -48,7 +49,7 @@ public class AboutFragment extends PreferenceFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
         if (layoutParams != null) {
-            layoutParams.setMargins(0, SystemUtil.getActionBarHeight(), 0, 0);
+            layoutParams.setMargins(0, DeviceInfoUtil.getActionBarHeight(), 0, 0);
             view.setLayoutParams(layoutParams);
         }
         super.onViewCreated(view, savedInstanceState);

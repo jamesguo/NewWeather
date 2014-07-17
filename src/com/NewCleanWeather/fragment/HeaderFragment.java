@@ -16,6 +16,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Space;
+import com.NewCleanWeather.R;
 import com.NewCleanWeather.widget.NotifyingScrollView;
 
 public abstract class HeaderFragment extends Fragment {
@@ -62,7 +63,7 @@ public abstract class HeaderFragment extends Fragment {
         final Activity activity = getActivity();
         assert activity != null;
         mFrameLayout = new FrameLayout(activity);
-
+        mFrameLayout.setBackgroundResource(R.drawable.splash);
         mHeader = onCreateHeaderView(inflater, mFrameLayout);
         mHeaderHeader = mHeader.findViewById(android.R.id.title);
         mHeaderBackground = mHeader.findViewById(android.R.id.background);

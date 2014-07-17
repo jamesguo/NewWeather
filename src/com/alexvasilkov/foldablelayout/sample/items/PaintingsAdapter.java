@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.NewCleanWeather.HomeActivity;
 import com.NewCleanWeather.R;
 import com.NewCleanWeather.SplashActivity;
+import com.NewCleanWeather.widget.WeatherListItemView;
 import com.alexvasilkov.foldablelayout.sample.activities.UnfoldableDetailsActivity;
 
 import java.util.Arrays;
@@ -22,11 +23,11 @@ public class PaintingsAdapter extends ItemsAdapter<Painting> implements View.OnC
 
     @Override
     protected View createView(Painting item, int pos, ViewGroup parent, LayoutInflater inflater) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.weather_list_item, parent, false);
         ViewHolder vh = new ViewHolder();
-        vh.image = Views.find(view, R.id.list_item_image);
-        vh.image.setOnClickListener(this);
-        vh.title = Views.find(view, R.id.list_item_title);
+        vh.itemView = Views.find(view, R.id.subInfo);
+        vh.image = Views.find(view, R.id.update);
+        vh.itemView.setOnClickListener(this);
         view.setTag(vh);
 
         return view;
@@ -35,10 +36,10 @@ public class PaintingsAdapter extends ItemsAdapter<Painting> implements View.OnC
     @Override
     protected void bindView(Painting item, int pos, View convertView) {
         ViewHolder vh = (ViewHolder) convertView.getTag();
-
         vh.image.setTag(item);
-        vh.image.setBackground(convertView.getContext().getResources().getDrawable(item.getImageId()));
-        vh.title.setText(item.getTitle());
+
+//        vh.image.setBackground(convertView.getContext().getResources().getDrawable(item.getImageId()));
+//        vh.title.setText(item.getTitle());
     }
 
     @Override
@@ -56,6 +57,7 @@ public class PaintingsAdapter extends ItemsAdapter<Painting> implements View.OnC
     private static class ViewHolder {
         ImageView image;
         TextView title;
+        WeatherListItemView itemView;
     }
 
     public interface UnfoldInterface {

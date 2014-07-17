@@ -17,7 +17,7 @@
             <enum name="hidden" value="3" />
         </attr>
     </declare-styleable>
-    <declare-styleable name="ShareProvider">
-        <attr name="actionProviderClass" format="string" />
+    <declare-styleable name="ShimmerView">
+        <attr name="reflectionColor" format="color"/>
     </declare-styleable>
 </resources>

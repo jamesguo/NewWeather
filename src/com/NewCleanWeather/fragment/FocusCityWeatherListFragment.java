@@ -23,6 +23,7 @@ import android.widget.ProgressBar;
 
 import com.NewCleanWeather.R;
 import com.alexvasilkov.foldablelayout.sample.items.PaintingsAdapter;
+import com.alexvasilkov.foldablelayout.sample.items.WeatherItemListAdapter;
 
 import java.lang.ref.WeakReference;
 
@@ -37,7 +38,7 @@ public class FocusCityWeatherListFragment extends HeaderFragment {
 
     private AsyncLoadSomething mAsyncLoadSomething;
     private FrameLayout mContentOverlay;
-    public PaintingsAdapter paintingsAdapter;
+    public WeatherItemListAdapter paintingsAdapter;
 
     @Override
     public void onAttach(Activity activity) {
@@ -97,9 +98,12 @@ public class FocusCityWeatherListFragment extends HeaderFragment {
         if (mListView == null) return;
 
         mListView.setVisibility(View.VISIBLE);
-        paintingsAdapter = new PaintingsAdapter(getActivity());
-        if(getTargetFragment()!=null&&getTargetFragment() instanceof PaintingsAdapter.UnfoldInterface){
-            paintingsAdapter.unfoldInterface = (PaintingsAdapter.UnfoldInterface)getTargetFragment();
+        paintingsAdapter = new WeatherItemListAdapter(getActivity());
+//        if(getTargetFragment()!=null&&getTargetFragment() instanceof PaintingsAdapter.UnfoldInterface){
+//            paintingsAdapter.unfoldInterface = (PaintingsAdapter.UnfoldInterface)getTargetFragment();
+//        }
+        if(getTargetFragment()!=null&&getTargetFragment() instanceof WeatherItemListAdapter.WeatherItemUnfoldInterface){
+            paintingsAdapter.unfoldInterface = (WeatherItemListAdapter.WeatherItemUnfoldInterface)getTargetFragment();
         }
         setListViewAdapter(mListView, paintingsAdapter);
     }

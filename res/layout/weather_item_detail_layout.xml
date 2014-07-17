@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
     <com.NewCleanWeather.widget.SlidingUpPanelLayout
             xmlns:sothree="http://schemas.android.com/apk/res-auto"
             android:id="@+id/sliding_layout"
@@ -18,17 +18,21 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            <TextView
-                    android:id="@+id/main"
+            <com.NewCleanWeather.widget.WeatherDetailView
+                    android:id="@+id/detailView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:textColor="@android:color/holo_blue_bright"
-                    android:text="Main ContentMain ContentMain ContentMain ContentMain ContentMain ContentMain Content"
-                    android:clickable="true"
-                    android:focusable="false"
-                    android:focusableInTouchMode="true"
-                    android:textSize="16sp" />
+                    android:layout_height="match_parent"/>
+            <!--<TextView-->
+            <!--android:id="@+id/main"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:gravity="center"-->
+            <!--android:textColor="@android:color/holo_blue_bright"-->
+            <!--android:text="Main ContentMain ContentMain ContentMain ContentMain ContentMain ContentMain Content"-->
+            <!--android:clickable="true"-->
+            <!--android:focusable="false"-->
+            <!--android:focusableInTouchMode="true"-->
+            <!--android:textSize="16sp" />-->
         </LinearLayout>
 
         <!-- SLIDING LAYOUT -->

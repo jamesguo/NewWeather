@@ -87,12 +87,14 @@
     <dimen name="spb_default_stroke_separator_length">4.0dip</dimen>
     <dimen name="spb_default_stroke_width">4.0dip</dimen>
     <dimen name="table_row_height">60.0dip</dimen>
+    <dimen name="text_size_xxlarge">35.0sp</dimen>
+    <dimen name="text_size_xlarge">22.0sp</dimen>
     <dimen name="text_size_large">18.0sp</dimen>
     <dimen name="text_size_medium">15.0sp</dimen>
     <dimen name="text_size_small">13.0sp</dimen>
     <dimen name="text_size_tiny">11.0sp</dimen>
     <dimen name="top_image_height">215.0dip</dimen>
-    <dimen name="touchmode_margin_threshold">20.0dip</dimen>
+    <dimen name="touch_mode_margin_threshold">20.0dip</dimen>
     <dimen name="vertical_padding_large">12.0dip</dimen>
     <dimen name="vertical_padding_medium">10.0dip</dimen>
     <dimen name="vertical_padding_small">8.0dip</dimen>
@@ -100,4 +102,6 @@
     <dimen name="vertical_padding_xlarge">16.0dip</dimen>
     <dimen name="vertical_padding_xxlarge">20.0dip</dimen>
     <dimen name="vertical_padding_xxxlarge">40.0dip</dimen>
+
+    <dimen name="card_background_default_radius">2.0dip</dimen>
 </resources>

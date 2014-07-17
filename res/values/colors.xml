@@ -62,6 +62,7 @@
     <color name="text_color_gray_deep">#ff666666</color>
     <color name="text_color_gray_light">#ffb8b8b8</color>
     <color name="text_color_orange">#ffff8752</color>
+    <color name="text_color_solid_orange">#ffff8040</color>
     <color name="text_color_red">#ffcc3333</color>
     <color name="text_color_white">#ffffffff</color>
     <color name="transparent">#00000000</color>
@@ -73,4 +74,7 @@
     <color name="vpi__bright_foreground_holo_light">@color/vpi__background_holo_dark</color>
     <color name="vpi__bright_foreground_inverse_holo_dark">@color/vpi__bright_foreground_holo_light</color>
     <color name="vpi__bright_foreground_inverse_holo_light">@color/vpi__bright_foreground_holo_dark</color>
+
+    <color name="sharing_item_background_dark">#ff272627</color>
+    <color name="label_txt_blue">#aa9bd1ff</color>
 </resources>
