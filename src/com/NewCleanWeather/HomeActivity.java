@@ -2,7 +2,6 @@ package com.NewCleanWeather;
 
 import android.app.Fragment;
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -13,15 +12,13 @@ import android.view.*;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SearchView;
 import com.NewCleanWeather.fragment.AboutFragment;
 import com.NewCleanWeather.fragment.SettingFragment;
-import com.NewCleanWeather.fragment.WeatherListFragment;
+import com.NewCleanWeather.fragment.WeatherListContainerFragment;
 import com.NewCleanWeather.manager.FragmentExchangeManager;
 import com.NewCleanWeather.widget.shimmer.Shimmer;
 import com.NewCleanWeather.widget.shimmer.ShimmerTextView;
 import com.alexvasilkov.foldablelayout.sample.activities.BaseActivity;
-import com.alexvasilkov.foldablelayout.sample.items.Painting;
 import com.alexvasilkov.foldablelayout.sample.items.Views;
 
 import java.util.ArrayList;
@@ -99,8 +96,8 @@ public class HomeActivity extends BaseActivity implements AdapterView.OnItemClic
             return;
         }
         Fragment fragment = getFragmentManager().findFragmentByTag(Weather_TAG);
-        if(fragment!=null&&fragment.isVisible()&&fragment instanceof WeatherListFragment){
-            if(((WeatherListFragment) fragment).onBackPressed()){
+        if(fragment!=null&&fragment.isVisible()&&fragment instanceof WeatherListContainerFragment){
+            if(((WeatherListContainerFragment) fragment).onBackPressed()){
                 return;
             }
         }
@@ -161,7 +158,7 @@ public class HomeActivity extends BaseActivity implements AdapterView.OnItemClic
             switch ((int) (((DrawerListAdapter.DreawerItem) localObject).index)) {
                 case 0:
                     if (currrent != (int) (((DrawerListAdapter.DreawerItem) localObject).index)) {
-                        FragmentExchangeManager.exchangeFragment(getFragmentManager(), R.id.content_frame, Weather_TAG, WeatherListFragment.class, null);
+                        FragmentExchangeManager.exchangeFragment(getFragmentManager(), R.id.content_frame, Weather_TAG, WeatherListContainerFragment.class, null);
                         getActionBar().setTitle(((DrawerListAdapter.DreawerItem) localObject).text);
                     }
                     break;

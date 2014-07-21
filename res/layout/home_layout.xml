@@ -14,13 +14,13 @@
                   android:background="@color/bg_white" android:focusable="true" android:clickable="true"
                   android:layout_width="@dimen/drawer_width" android:layout_height="fill_parent">
         <FrameLayout android:id="@id/drawer_header"
-                     android:background="@drawable/bg_banner_dialog"
                      android:layout_width="fill_parent"
                      android:focusable="false" android:clickable="false"
                      android:paddingTop="?android:attr/actionBarSize"
                      android:layout_height="wrap_content">
             <RelativeLayout android:layout_width="fill_parent"
                             android:layout_height="@dimen/drawer_header_item_height"
+                            android:background="@drawable/bg_banner_dialog"
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true">
                 <com.NewCleanWeather.widget.shimmer.ShimmerTextView

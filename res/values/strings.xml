@@ -87,4 +87,7 @@
     <string name="wind">Wind</string>
     <string name="feels_like">Feels Like</string>
     <string name="visibility">Visibility</string>
+    <string name="pressure">Pressure</string>
+    <string name="dew_point">Dew Point</string>
+    <string name="rain_rate">Precip</string>
 </resources>

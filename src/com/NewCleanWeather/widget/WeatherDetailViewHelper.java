@@ -35,4 +35,14 @@ public class WeatherDetailViewHelper {
     public static int forcastItemOffset_Y;
     public static int forcastItemOffset_X;
     public static int usefaulItemHeight;
+    public static int currentItemOffset_Y;
+    public static int currentItemHeight;
+    public static int currentItemWidth;
+    public static int currentItemDividor;
+    public static int feelLikeItemOffset_Y;
+    public static int feelLikeTextItemOffset_Y;
+    public static int currentItemOffset_X;
+    public static int currentItemOffset_X_2;
+    public static int currentItemOffset_Y_2;
+    public static int currentItemOffset_X_3;
 }

@@ -89,4 +89,7 @@
     <string name="wind">风力风向</string>
     <string name="feels_like">体感温度</string>
     <string name="visibility">能见度</string>
+    <string name="pressure">气压</string>
+    <string name="dew_point">露点</string>
+    <string name="rain_rate">降雨</string>
 </resources>

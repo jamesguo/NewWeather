@@ -34,39 +34,41 @@ public class WeatherItemListAdapter extends ItemsAdapter<WeatherListItemModel> i
             itemModel.mWeatherInfoModel.weather_uv_index = 2;
             itemModel.mWeatherInfoModel.weatherCode = 30;
             itemModel.mWeatherInfoModel.weatherText = "Rain";
-            WeatherForcastModel weatherForcastModel = new WeatherForcastModel();
-            weatherForcastModel.mWeatherInfoModel = itemModel.mWeatherInfoModel;
-            weatherForcastModel.mWeatherTempModel = itemModel.mWeatherTempModel;
-            itemModel.weatherForcastModels.add(weatherForcastModel);
-            weatherForcastModel = new WeatherForcastModel();
-            weatherForcastModel.mWeatherInfoModel = itemModel.mWeatherInfoModel;
-            weatherForcastModel.mWeatherTempModel = itemModel.mWeatherTempModel;
-            itemModel.weatherForcastModels.add(weatherForcastModel);
-            weatherForcastModel = new WeatherForcastModel();
-            weatherForcastModel.mWeatherInfoModel = itemModel.mWeatherInfoModel;
-            weatherForcastModel.mWeatherTempModel = itemModel.mWeatherTempModel;
-            itemModel.weatherForcastModels.add(weatherForcastModel);
-            weatherForcastModel = new WeatherForcastModel();
-            weatherForcastModel.mWeatherInfoModel = itemModel.mWeatherInfoModel;
-            weatherForcastModel.mWeatherTempModel = itemModel.mWeatherTempModel;
-            itemModel.weatherForcastModels.add(weatherForcastModel);
-            weatherForcastModel = new WeatherForcastModel();
-            weatherForcastModel.mWeatherInfoModel = itemModel.mWeatherInfoModel;
-            weatherForcastModel.mWeatherTempModel = itemModel.mWeatherTempModel;
-            itemModel.weatherForcastModels.add(weatherForcastModel);
-            weatherForcastModel = new WeatherForcastModel();
-            weatherForcastModel.mWeatherInfoModel = itemModel.mWeatherInfoModel;
-            weatherForcastModel.mWeatherTempModel = itemModel.mWeatherTempModel;
-            itemModel.weatherForcastModels.add(weatherForcastModel);
 
 
             itemModel.mWeatherRainModel = new WeatherRainModel();
             itemModel.mWeatherRainModel.rain_rate = "90%";
+            itemModel.mWeatherRainModel.humidity = "90%";
 
+            itemModel.mWeatherPressureModel = new WeatherPressureModel();
+            itemModel.mWeatherPressureModel.pressure = "60.8";
+            itemModel.mWeatherPressureModel.pressure_unit = "in";
             itemModel.mWeatherTempModel = new WeatherTempModel();
             itemModel.mWeatherTempModel.currentTemp_c = 21 * (index + 1);
             itemModel.mWeatherTempModel.lowTemp_c = 16;
             itemModel.mWeatherTempModel.highTemp_c = 35;
+            itemModel.mWeatherTempModel.feellike_c = 21 * (index + 1);
+            itemModel.mWeatherTempModel.feellike_f = 35;
+            itemModel.mWeatherTempModel.dew_point_c = 21 * (index + 1);
+            itemModel.mWeatherTempModel.dew_point_f = 35;
+
+            WeatherForcastModel weatherForcastModel = new WeatherForcastModel();
+            weatherForcastModel.mWeatherInfoModel = itemModel.mWeatherInfoModel;
+            weatherForcastModel.mWeatherTempModel = itemModel.mWeatherTempModel;
+            weatherForcastModel.mWeatherRainModel = itemModel.mWeatherRainModel;
+            itemModel.weatherForcastModels.add(weatherForcastModel);
+            weatherForcastModel = new WeatherForcastModel();
+            weatherForcastModel.mWeatherInfoModel = itemModel.mWeatherInfoModel;
+            weatherForcastModel.mWeatherTempModel = itemModel.mWeatherTempModel;
+            weatherForcastModel.mWeatherRainModel = itemModel.mWeatherRainModel;
+            itemModel.weatherForcastModels.add(weatherForcastModel);
+            weatherForcastModel = new WeatherForcastModel();
+            weatherForcastModel.mWeatherInfoModel = itemModel.mWeatherInfoModel;
+            weatherForcastModel.mWeatherTempModel = itemModel.mWeatherTempModel;
+            weatherForcastModel.mWeatherRainModel = itemModel.mWeatherRainModel;
+            itemModel.weatherForcastModels.add(weatherForcastModel);
+
+
             arrayList.add(itemModel);
         }
         setItemsList(arrayList);

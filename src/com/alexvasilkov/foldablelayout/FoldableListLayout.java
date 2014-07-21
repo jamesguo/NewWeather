@@ -12,6 +12,10 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
+import com.NewCleanWeather.R;
+import com.NewCleanWeather.util.DeviceInfoUtil;
+import com.NewCleanWeather.util.DimenUtil;
+import com.NewCleanWeather.util.SystemUtil;
 import com.alexvasilkov.foldablelayout.shading.FoldShading;
 import com.alexvasilkov.foldablelayout.shading.SimpleFoldShading;
 
@@ -52,6 +56,7 @@ public class FoldableListLayout extends FrameLayout implements GestureDetector.O
     private boolean mIsScrollDetected;
     private float mScrollStartRotation;
     private float mScrollStartDistance;
+    private boolean touchable = true;
 
     public FoldableListLayout(Context context) {
         super(context);
@@ -76,6 +81,14 @@ public class FoldableListLayout extends FrameLayout implements GestureDetector.O
         mFoldShading = new SimpleFoldShading();
     }
 
+    public boolean isTouchable() {
+        return touchable;
+    }
+
+    public void setTouchable(boolean touchable) {
+        this.touchable = touchable;
+    }
+
     @Override
     protected void dispatchDraw(Canvas canvas) {
         // We want manually draw only selected children
@@ -83,23 +96,35 @@ public class FoldableListLayout extends FrameLayout implements GestureDetector.O
         if (mSecondLayout != null) mSecondLayout.draw(canvas);
     }
 
-//    @Override
-//    public boolean dispatchTouchEvent(MotionEvent ev) {
-//        super.dispatchTouchEvent(ev);
-//        return getCount() > 0; // No touches for underlying views if we have items
-//    }
-//
-//    @Override
-//    public boolean onInterceptTouchEvent(MotionEvent event) {
-//        // Listening for events but propogates them to children if no own gestures are detected
-//        return processTouch(event);
-//    }
-//
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//        // We will be here if no children wants to handle current touches or if own gesture is detected
-//        return processTouch(event);
-//    }
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (!isTouchable() || ev.getRawY() > DeviceInfoUtil.getWindowHeight() - DimenUtil.getDimensionPixelSize(R.dimen.default_itemHeight)) {
+            return super.dispatchTouchEvent(ev);
+        } else {
+            super.dispatchTouchEvent(ev);
+            return getCount() > 0; // No touches for underlying views if we have items
+        }
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent event) {
+        // Listening for events but propogates them to children if no own gestures are detected
+        if (!isTouchable() || event.getRawY() > DeviceInfoUtil.getWindowHeight() - DimenUtil.getDimensionPixelSize(R.dimen.default_itemHeight)) {
+            return super.onInterceptTouchEvent(event);
+        } else {
+            return processTouch(event);
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        // We will be here if no children wants to handle current touches or if own gesture is detected
+        if (!isTouchable() || event.getRawY() > DeviceInfoUtil.getWindowHeight() - DimenUtil.getDimensionPixelSize(R.dimen.default_itemHeight)) {
+            return super.onTouchEvent(event);
+        } else {
+            return processTouch(event);
+        }
+    }
 
     public void setOnFoldRotationListener(OnFoldRotationListener listener) {
         mFoldRotationListener = listener;
